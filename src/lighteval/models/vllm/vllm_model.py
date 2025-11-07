@@ -54,7 +54,6 @@ if is_package_available("vllm"):
     )
     from vllm.transformers_utils.tokenizer import get_tokenizer
     from vllm.v1.engine.async_llm import AsyncEngineArgs, AsyncLLM
-    from vllm.inputs import token_inputs
 
     logging.getLogger("vllm").propagate = True
     logging.getLogger("vllm").handlers.clear()
@@ -438,8 +437,7 @@ class VLLMModel(LightevalModel):
             @ray.remote(num_gpus=self.tensor_parallel_size)
             def run_inference_one_model(model_args: dict, sampling_params: SamplingParams, requests):
                 llm = LLM(**model_args)
-                requests = [token_inputs(prompt_token_ids=request) for request in requests]
-                return llm.generate(prompts=requests, sampling_params=sampling_params)
+                return llm.generate(prompt_token_ids=requests, sampling_params=sampling_params)
 
             # dispatch requests to all self.data_parallel_size workers, in interleaved fashion
             # interleaved important to balance context lengths across workers
@@ -457,7 +455,7 @@ class VLLMModel(LightevalModel):
             ]
         else:
             outputs = self.model.generate(
-                prompts=inputs,
+                prompt_token_ids=inputs,
                 sampling_params=sampling_params,
                 use_tqdm=True,
             )
