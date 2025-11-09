@@ -42,7 +42,7 @@ logger = logging.getLogger(__name__)
 
 if is_package_available("sglang"):
     from sglang import Engine
-    from sglang.srt.hf_transformers_utils import get_tokenizer
+    from sglang.srt.utils.hf_transformers_utils import get_tokenizer
 
     logging.getLogger("sglang").propagate = True
     logging.getLogger("sglang").handlers.clear()
