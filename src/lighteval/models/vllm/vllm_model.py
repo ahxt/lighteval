@@ -30,7 +30,6 @@ from typing import Coroutine, Optional
 import torch
 from pydantic import NonNegativeFloat, NonNegativeInt, PositiveInt
 from tqdm import tqdm
-from vllm.inputs.data import TokensPrompt
 
 from lighteval.data import GenerativeTaskDataset, LoglikelihoodDataset
 from lighteval.models.abstract_model import LightevalModel, ModelConfig
@@ -49,6 +48,7 @@ if is_package_available("vllm"):
     import ray
     from more_itertools import distribute
     from vllm import LLM, RequestOutput, SamplingParams
+    from vllm.inputs.data import TokensPrompt
     from vllm.distributed.parallel_state import (
         destroy_distributed_environment,
         destroy_model_parallel,
