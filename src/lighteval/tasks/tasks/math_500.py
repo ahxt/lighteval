@@ -40,6 +40,34 @@ math_500 = LightevalTaskConfig(
     version=2,
 )
 
+
+
+math_500_all = LightevalTaskConfig(
+    name="math_500_all",
+    prompt_function=prompt.math_500,
+    hf_repo="HuggingFaceH4/MATH-500",
+    hf_subset="default",
+    hf_avail_splits=["test"],
+    evaluation_splits=["test"],
+    few_shots_split=None,
+    few_shots_select=None,
+    generation_size=32768,
+    metrics=[
+        Metrics.pass_at_k_math(sample_params={"k": 1, "n": 8}),
+        Metrics.pass_at_k_math(sample_params={"k": 2, "n": 8}),
+        Metrics.pass_at_k_math(sample_params={"k": 4, "n": 8}),
+        Metrics.pass_at_k_math(sample_params={"k": 8, "n": 8}),
+        Metrics.avg_at_n_math(sample_params={"n": 1}),
+        Metrics.avg_at_n_math(sample_params={"n": 2}),
+        Metrics.avg_at_n_math(sample_params={"n": 4}),
+        Metrics.avg_at_n_math(sample_params={"n": 8})
+    ],
+    version=2,
+)
+
 TASKS_TABLE = [
     math_500,
+    math_500_all
 ]
+
+

@@ -145,9 +145,74 @@ aime25_gpassk = LightevalTaskConfig(
     version=1,
 )
 
+
+
+aime24_all = LightevalTaskConfig(
+    name="aime24_all",
+    prompt_function=prompt.aime_prompt_fn,
+    sample_fields=record_to_sample,
+    solver=[prompt_template(MATH_PROMPT_TEMPLATE), generate(cache=True)],
+    scorer=math_scorer(),
+    hf_repo="HuggingFaceH4/aime_2024",
+    hf_subset="default",
+    hf_avail_splits=["train"],
+    evaluation_splits=["train"],
+    few_shots_split=None,
+    few_shots_select=None,
+    generation_size=None,
+    metrics=[
+        Metrics.pass_at_k_math(sample_params={"k": 1, "n": 32}),
+        Metrics.pass_at_k_math(sample_params={"k": 2, "n": 32}),
+        Metrics.pass_at_k_math(sample_params={"k": 4, "n": 32}),
+        Metrics.pass_at_k_math(sample_params={"k": 8, "n": 32}),
+        Metrics.pass_at_k_math(sample_params={"k": 16, "n": 32}),
+        Metrics.pass_at_k_math(sample_params={"k": 32, "n": 32}),
+        Metrics.avg_at_n_math(sample_params={"n": 1}),
+        Metrics.avg_at_n_math(sample_params={"n": 2}),
+        Metrics.avg_at_n_math(sample_params={"n": 4}),
+        Metrics.avg_at_n_math(sample_params={"n": 8}),
+        Metrics.avg_at_n_math(sample_params={"n": 16}),
+        Metrics.avg_at_n_math(sample_params={"n": 32}),
+    ],
+    version=2,
+)
+
+
+aime25_all = LightevalTaskConfig(
+    name="aime25_all",
+    prompt_function=prompt.aime_prompt_fn,
+    sample_fields=record_to_sample,
+    hf_repo="yentinglin/aime_2025",
+    hf_subset="default",
+    hf_avail_splits=["train"],
+    evaluation_splits=["train"],
+    few_shots_split=None,
+    few_shots_select=None,
+    generation_size=None,
+    metrics=[
+        Metrics.pass_at_k_math(sample_params={"k": 1, "n": 32}),
+        Metrics.pass_at_k_math(sample_params={"k": 2, "n": 32}),
+        Metrics.pass_at_k_math(sample_params={"k": 4, "n": 32}),
+        Metrics.pass_at_k_math(sample_params={"k": 8, "n": 32}),
+        Metrics.pass_at_k_math(sample_params={"k": 16, "n": 32}),
+        Metrics.pass_at_k_math(sample_params={"k": 32, "n": 32}),
+        Metrics.avg_at_n_math(sample_params={"n": 1}),
+        Metrics.avg_at_n_math(sample_params={"n": 2}),
+        Metrics.avg_at_n_math(sample_params={"n": 4}),
+        Metrics.avg_at_n_math(sample_params={"n": 8}),
+        Metrics.avg_at_n_math(sample_params={"n": 16}),
+        Metrics.avg_at_n_math(sample_params={"n": 32}),
+        ],
+    version=2,
+)
+
 TASKS_TABLE = [
     aime24,
     aime24_gpassk,
+    aime24_all,
     aime25,
     aime25_gpassk,
+    aime25_all
 ]
+
+
