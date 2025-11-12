@@ -1235,7 +1235,7 @@ class MajAtN(SamplingMetric, SampleLevelComputation):
         Returns:
             float: Aggregated score over the current sample's items.
         """
-        if self.k is None:
+        if self.n is None:
             raise Exception("You did not set the value of n")
 
         golds = doc.get_golds()
