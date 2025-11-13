@@ -98,6 +98,9 @@ TASKS_TABLE = [
         metrics=[
             Metrics.loglikelihood_acc,
             Metrics.pass_at_k_letters(sample_params={"k": 1}),
+            Metrics.pass_at_k_letters(sample_params={"k": 2}),
+            Metrics.pass_at_k_letters(sample_params={"k": 4}),
+            Metrics.pass_at_k_letters(sample_params={"k": 8}),
         ],
         stop_sequence=["\n"],
         version=0,

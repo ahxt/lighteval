@@ -83,7 +83,12 @@ gpqa_diamond_instruct = LightevalTaskConfig(
     few_shots_split=None,
     few_shots_select=None,
     generation_size=32768,  # needed for reasoning models like R1
-    metrics=[Metrics.gpqa_instruct_pass_at_k(sample_params={"k": 1})],
+    metrics=[
+        Metrics.gpqa_instruct_pass_at_k(sample_params={"k": 1, "n": 8}),
+        Metrics.gpqa_instruct_pass_at_k(sample_params={"k": 2, "n": 8}),
+        Metrics.gpqa_instruct_pass_at_k(sample_params={"k": 4, "n": 8}),
+        Metrics.gpqa_instruct_pass_at_k(sample_params={"k": 8, "n": 8}),
+    ],
     stop_sequence=[],  # no stop sequence, will use eos token
     version=1,
 )
