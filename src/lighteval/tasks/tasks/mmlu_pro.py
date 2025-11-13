@@ -76,10 +76,10 @@ mmlu_pro = LightevalTaskConfig(
     few_shots_split="validation",
     metrics=[
         Metrics.gpqa_instruct_metric,
-        Metrics.gpqa_instruct_pass_at_k(sample_params={"k": 1, "n": 8}),
-        Metrics.gpqa_instruct_pass_at_k(sample_params={"k": 2, "n": 8}),
-        Metrics.gpqa_instruct_pass_at_k(sample_params={"k": 4, "n": 8}),
-        Metrics.gpqa_instruct_pass_at_k(sample_params={"k": 8, "n": 8}),
+        # Metrics.gpqa_instruct_pass_at_k(sample_params={"k": 1, "n": 8}),
+        # Metrics.gpqa_instruct_pass_at_k(sample_params={"k": 2, "n": 8}),
+        # Metrics.gpqa_instruct_pass_at_k(sample_params={"k": 4, "n": 8}),
+        # Metrics.gpqa_instruct_pass_at_k(sample_params={"k": 8, "n": 8}),
     ],
 )
 
