@@ -1134,6 +1134,7 @@ class PronounCountChecker(Instruction):
     def check_following(self, value):
         """Checks if the response includes at least {N} pronouns."""
         pronouns = set(
+            [
             "i",
             "me",
             "my",
@@ -1165,6 +1166,7 @@ class PronounCountChecker(Instruction):
             "their",
             "theirs",
             "themselves",
+            ]
         )
         value = value.replace(
             "/", " "
