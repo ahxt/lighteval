@@ -356,7 +356,7 @@ class EvaluationTracker:
         self.fs.mkdirs(output_dir_details_sub_folder, exist_ok=True)
         logger.info(f"Saving details to {output_dir_details_sub_folder}")
         for task_name, dataset in details_datasets.items():
-            output_file_details = output_dir_details_sub_folder / f"details_{task_name.replace('|', '-')}_{date_id}.parquet"
+            output_file_details = output_dir_details_sub_folder / f"details_{task_name.replace('|', '-').replace(':', '-')}_{date_id}.parquet"
             with self.fs.open(str(output_file_details), "wb") as f:
                 dataset.to_parquet(f)
 
