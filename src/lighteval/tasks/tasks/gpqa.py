@@ -119,7 +119,7 @@ gpqa_main_instruct = LightevalTaskConfig(
     sample_to_fewshot=sample_to_fewshot,
     solver=[multiple_choice(cache=True)],
     scorer=choice(),
-    hf_repo="Idavidrein/gpqa",
+    hf_repo="Wanfq/gpqa",
     hf_subset="gpqa_main",
     hf_avail_splits=["train"],
     evaluation_splits=["train"],
